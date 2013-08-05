@@ -128,7 +128,7 @@ iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A INPUT -i "$VPN_INTERFACE" -j ACCEPT
 
 ## Log.
-iptables -A INPUT -j LOG --log-prefix "VPN firewall blocked input4: "
+iptables -A INPUT -j LOG --log-prefix "Firewall blocked input4: "
 
 ## Reject anything not explicitly allowed above.
 ## Drop is better than reject here, because ...
@@ -139,7 +139,7 @@ iptables -A INPUT -j DROP
 ###########################
 
 ## Log.
-iptables -A FORWARD -j LOG --log-prefix "VPN firewall blocked forward4: "
+iptables -A FORWARD -j LOG --log-prefix "Firewall blocked forward4: "
 
 ## Reject everything.
 iptables -A FORWARD -j REJECT --reject-with icmp-admin-prohibited
@@ -163,7 +163,7 @@ for NET in $LOCAL_NET; do
 done
 
 ## Log.
-iptables -A OUTPUT -j LOG --log-prefix "VPN firewall blocked output4: "
+iptables -A OUTPUT -j LOG --log-prefix "Firewall blocked output4: "
 
 ## Reject all other outgoing traffic.
 iptables -A OUTPUT -j REJECT --reject-with icmp-admin-prohibited
